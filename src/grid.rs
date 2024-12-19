@@ -1,7 +1,7 @@
 /// # Grid
 /// This struct represents a grid of points in 1D.
 /// Todo: improve comments for this
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Grid {
     pub grid_points: Vec<f64>,
 }
