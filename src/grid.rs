@@ -1,6 +1,11 @@
 /// # Grid
-/// This struct represents a grid of points in 1D.
-/// Todo: improve comments for this
+///
+/// Description: this struct represents a grid of points in 1D. The
+/// coordinate of each point corresponds to an element in the vector
+/// grid_points.
+///
+/// Example use case: todo: add example use case.
+///
 #[derive(Debug, Clone)]
 pub struct Grid {
     pub grid_points: Vec<f64>,
@@ -9,19 +14,10 @@ pub struct Grid {
 impl Grid {
     /// # New uniform grid
     ///
-    /// Details:
-    /// Author -> Joe Endacott (https://github.com/joeEndacott).
-    /// Date of last modification -> 19/12/2024.
+    /// Description: creates a uniform grid of num_points points between
+    /// start_point and end_point inclusive.
     ///
-    /// Description:
-    /// Creates a uniform grid of num_points points between start_point and end_point inclusive.
-    ///
-    /// Inputs:
-    /// start_point -> coordinate of the first grid point.
-    /// end_point -> coordinate of the final grid point.
-    /// num_points -> number of grid points
-    ///
-    /// Output: Grid { grid_points } -> uniform grid of points, represented using the Grid struct.
+    /// Example use case: todo: add example use case.
     ///
     pub fn new_uniform_grid(
         start_point: f64,
@@ -43,5 +39,39 @@ impl Grid {
             .collect();
 
         Grid { grid_points }
+    }
+}
+
+/// # Grid function
+///
+/// Description: this struct represents a real-valued function of a real
+/// variable sampled on a grid of 1D points. The value of the function at each
+/// sampling point corresponds to an element in the vector function_values. The
+/// sampling points are contained in the Grid grid.
+///
+#[derive(Debug)]
+pub struct GridFunction {
+    pub grid: Grid,
+    pub function_values: Vec<f64>,
+}
+
+impl GridFunction {
+    /// # New grid function
+    ///
+    /// Description: this function generates a grid function, given a
+    /// real-valued function of a real variable func and a Grid grid.
+    ///
+    pub fn new_grid_function<F>(grid: Grid, func: F) -> Self
+    where
+        F: Fn(f64) -> f64,
+    {
+        // Creates a vector containing the value of func at each grid point.
+        let function_values: Vec<f64> =
+            grid.grid_points.iter().map(|&x| func(x)).collect();
+
+        GridFunction {
+            grid,
+            function_values,
+        }
     }
 }
