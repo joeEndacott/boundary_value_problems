@@ -314,16 +314,6 @@ where
             boundary_conditions,
             1e-6,
         );
-
-        // println!(
-        //     "Current guess: {:?}",
-        //     grid_func_guess
-        //         .function_values
-        //         .iter()
-        //         .map(|x| format!("{:.2}", x))
-        //         .collect::<Vec<_>>()
-        // );
     }
-
     grid_func_guess
 }
